@@ -28,7 +28,7 @@ class ImgCapture:
                 break
 
 
-    def generateData(self):
+    def generateData(self, DATASET_SIZE):
         cap = cv2.VideoCapture('video.avi')
 
         try:
@@ -38,18 +38,16 @@ class ImgCapture:
             print ('Error: Creating directory {}'.format(self.DIR_NAME))
 
         currentFrame = 0
-
-        while(currentFrame < 100): 
+        for i in range(0, DATASET_SIZE*3, 3):   #not step is 3 to avoid duplicate frames
             # Capture frame-by-frame
             ret, frame = cap.read()
-
+            
             # Saves image of the current frame in jpg file
-            name = './'+ self.DIR_NAME + '/frame' + str(currentFrame) + '.jpg'
-        #     print ('Creating...' + name)
+            name = './{}/frame{}.jpg'.format(self.DIR_NAME, currentFrame)
+            
             cv2.imwrite(name, frame)
-
-            # To stop duplicate images
             currentFrame += 1
+
         print ('Dataset Ready!')
         
         # When everything done, release the capture
