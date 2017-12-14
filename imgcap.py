@@ -38,7 +38,7 @@ class ImgCapture:
             print ('Error: Creating directory {}'.format(self.DIR_NAME))
 
         currentFrame = 0
-        for i in range(0, DATASET_SIZE*3, 3):   #not step is 3 to avoid duplicate frames
+        for i in range(10, DATASET_SIZE*3, 3):   #not step is 3 to avoid duplicate frames & ignore first 10 frames
             # Capture frame-by-frame
             ret, frame = cap.read()
             
